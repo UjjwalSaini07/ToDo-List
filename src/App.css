@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+
+.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+.dark-mode .App-header {
+  background-color: #1e1e1e;
+}
+
+.dark-mode .App-link {
+  color: #bb86fc;
+}
+
+.dark-mode button {
+  background-color: #bb86fc;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dark-mode button:hover {
+  background-color: #9a67ea;
+}

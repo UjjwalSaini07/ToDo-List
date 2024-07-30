@@ -3,28 +3,25 @@ import Home from './pages/home';
 import './App.css';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(() => {
+   const [darkMode, setDarkMode] = useState(() => {
     const savedMode = localStorage.getItem('darkMode');
     return savedMode ? JSON.parse(savedMode) : false;
   });
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
+    document.body.classList.toggle('dark-mode', darkMode);
   }, [darkMode]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const handleToggleDarkMode = () => setDarkMode(prevMode => !prevMode);
 
   return (
-    <div className="App">
-      <header>
-        <button onClick={toggleDarkMode}>
+    <div className={`App ${darkMode ? 'dark-mode' : 'light-mode'}`}>
+      <header className="App-header">
+        <button
+          className="mode-toggle-button"
+          onClick={handleToggleDarkMode}
+        >
           {darkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
       </header>
@@ -37,4 +34,3 @@ function App() {
 }
 
 export default App;
-

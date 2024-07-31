@@ -16,8 +16,8 @@ function ThemeToggle() {
         alignItems: "center",
         justifyContent: "center",
         position: "fixed",
-        top: "20px",
-        right: "20px",
+        top: "10px",
+        right: "18px",
         zIndex: 1000,
       }}
     >

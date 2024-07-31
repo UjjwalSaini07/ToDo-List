@@ -1,5 +1,6 @@
 import React from 'react';
-import Navbar from './components/Navbar'; // Adjust the path as needed
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Home from './pages/home';
 import Remainder from './pages/remainder';
 import ThemeToggle from './pages/ThemeToggle';
@@ -7,12 +8,16 @@ import './App.css';
 
 function App() {
   return (
-    <main>
+    <Router>
       <Navbar />
       <ThemeToggle />
-      <Home />
-      <Remainder />
-    </main>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/remainder" element={<Remainder />} />
+        </Routes>
+      </main>
+    </Router>
   );
 }
 

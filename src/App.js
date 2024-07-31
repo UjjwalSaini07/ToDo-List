@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/home';
 import Remainder from './pages/remainder';
-import ThemeToggle from './pages/ThemeToggle';
+import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {

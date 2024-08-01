@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './remainder.css';
 
 function App() {
   const [reminders, setReminders] = useState([]);

@@ -52,7 +52,6 @@ function ThemeToggle() {
 
 export default ThemeToggle;
 
-
 // ! But due to this code after refreshing it raise Problem - It go initial mode as Light Mode
 // Todo: Previous Code
 // import React, { useState } from "react";

@@ -52,6 +52,7 @@ function ThemeToggle() {
 
 export default ThemeToggle;
 
+// I also add Theme Toggle For prevent Mode toggling when refresh the page
 
 // ! But due to this code after refreshing it raise Problem - It go initial mode as Light Mode
 // Todo: Previous Code

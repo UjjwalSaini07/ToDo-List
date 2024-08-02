@@ -1,24 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import './remainder.css';
+import { FaTrashAlt } from 'react-icons/fa';
+import reminderSound from '../components/assets/reminder-sound.mp3';
 
 function App() {
   const [reminders, setReminders] = useState([]);
   const [title, setTitle] = useState('');
   const [time, setTime] = useState('');
   const [message, setMessage] = useState('');
+  const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const now = new Date();
+      setCurrentTime(now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }));
+
       reminders.forEach(reminder => {
-        if (reminder.time === currentTime) {
+        if (reminder.time === now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })) {
           alert(`Reminder: ${reminder.title}\nMessage: ${reminder.message}`);
+          playSound();
         }
       });
     }, 1000);
 
     return () => clearInterval(interval);
   }, [reminders]);
+
+  const playSound = () => {
+    const audio = new Audio(reminderSound);
+    audio.play().catch(error => console.log('Error playing sound:', error));
+  };
 
   const addReminder = () => {
     if (title && time && message) {
@@ -31,13 +42,21 @@ function App() {
     }
   };
 
+  const deleteReminder = (index) => {
+    const newReminders = reminders.filter((_, i) => i !== index);
+    setReminders(newReminders);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Todo List with Reminders</h1>
+        <h1>Set Reminders</h1>
       </header>
 
       <main>
+        <div className="clock">
+          <h2>{currentTime}</h2>
+        </div>
         <div className="reminder-section">
           <h2>Add Reminder</h2>
           <input
@@ -57,12 +76,15 @@ function App() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <button onClick={addReminder}>Add Reminder</button>
+          <button onClick={addReminder} className="addReminder">Add Reminder</button>
 
           <ul>
             {reminders.map((reminder, index) => (
               <li key={index}>
-                {reminder.title} at {reminder.time} - {reminder.message}
+                <div className="reminder-details">
+                  <span className="reminder-time">{reminder.time}</span> - <strong>{reminder.title}</strong>: {reminder.message}
+                </div>
+                <button onClick={() => deleteReminder(index)} className="delete-button"><FaTrashAlt /></button>
               </li>
             ))}
           </ul>

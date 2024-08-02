@@ -22,5 +22,3 @@ function App() {
 }
 
 export default App;
-
-// Please Avoid to do chnage sin App.js
